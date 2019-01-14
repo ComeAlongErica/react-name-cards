@@ -10,3 +10,27 @@
   font-weight: bold;
 }
 
+.App button {
+  font: inherit;
+  border: 1px solid gold;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 10px;
+  background-color: gold;
+  color: white;
+  transition: 0.3s ease-in-out;
+}
+
+.App button:hover {
+  border: 1px solid rgb(73, 73, 72);;
+  background-color: rgb(73, 73, 72);
+}
+
+.App button.Selected {
+  color: gold;
+  background-color: white;
+}
+
+.App button.Selected:hover {
+  color: rgb(73, 73, 72);;
+}

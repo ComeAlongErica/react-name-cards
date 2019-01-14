@@ -1,5 +1,5 @@
 import React, { Component } from 'react'; // import component class
-import './App.css'; //imports css
+import classes from './App.css'; //imports css
 import Person from './Person/Person.js' //imports person component
 
 class App extends Component {
@@ -51,19 +51,8 @@ class App extends Component {
   render() {
 
     //styling with javascript, bound as an attribute on the button
-    const style = {
-      backgroundColor: "white",
-      font: "inherit",
-      border: "1px solid gold",
-      borderRadius: "10px",
-      cursor: "pointer",
-      padding: "10px",
-      backgroundColor: "gold",
-      color: "white",
-      transition: ".3s ease-in-out",
-    };
-
     let persons = null;
+    let btnClass = '';
 
     if (this.state.showPersons) {
       persons = (
@@ -80,35 +69,26 @@ class App extends Component {
         </div>
       );
 
-      //conditionally change style with vanilla javascript
-      style.backgroundColor = "white";
-      style.color = "gold";
-      // radium feature below
-      style[':hover'] = {
-        backgroundColor: "gold",
-        color: "white"
-      }
+      btnClass = classes.Selected;
     }
 
 
     // assign css classes
-    const classes = []
+    const assignedClasses = []
     if (this.state.persons.length <= 2) {
-      classes.push("red"); // classes = ["red"]
+      assignedClasses.push( classes.red );
     }
     if (this.state.persons.length <= 1) {
-      classes.push("bold"); // classes = ["red","bold"]
+      assignedClasses.push( classes.bold ); 
     }
 
     return (
-      // wrap app in StyleRoot (imported from Radium) to apply media queries and other advanced CSS features
-        <div className="App">
+        <div className={classes.App}>
           <h1>Hi, I'm a React App</h1>
-          <p className={classes.join(" ")}>This is working! Woohoo!</p>
+          <p className={assignedClasses.join(" ")}>This is working! Woohoo!</p>
           <button
-            style={style}
+            className={btnClass}
             onClick={this.togglePersonHandler}>Toggle Persons</button>
-
           {persons}
         </div>
     );

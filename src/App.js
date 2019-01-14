@@ -1,7 +1,6 @@
 import React, { Component } from 'react'; // import component class
 import './App.css'; //imports css
 import Person from './Person/Person.js' //imports person component
-import Radium, { StyleRoot } from 'radium'; //for styling
 
 class App extends Component {
   state = {
@@ -62,11 +61,6 @@ class App extends Component {
       backgroundColor: "gold",
       color: "white",
       transition: ".3s ease-in-out",
-      // wrap psuedo in quotes, import radium to do, put values in an object
-      ':hover': {
-        backgroundColor: "white",
-        color: "gold"
-      }
     };
 
     let persons = null;
@@ -108,7 +102,6 @@ class App extends Component {
 
     return (
       // wrap app in StyleRoot (imported from Radium) to apply media queries and other advanced CSS features
-      <StyleRoot>
         <div className="App">
           <h1>Hi, I'm a React App</h1>
           <p className={classes.join(" ")}>This is working! Woohoo!</p>
@@ -118,10 +111,9 @@ class App extends Component {
 
           {persons}
         </div>
-      </StyleRoot>
     );
   }
 }
 
 // exports a higher order component
-export default Radium(App);
+export default App;

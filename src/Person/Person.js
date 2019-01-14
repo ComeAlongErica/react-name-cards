@@ -1,6 +1,5 @@
 import React from 'react'; // we are not extending a component so you don't need to import component
 import './Person.css';
-import Radium from 'radium'; //for styling
 
 
 const person = (props) => {
@@ -19,4 +18,4 @@ const person = (props) => {
         )
 };
 
-export default Radium(person);
+export default person;

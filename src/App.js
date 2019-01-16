@@ -1,6 +1,7 @@
 import React, { Component } from 'react'; // import component class
 import classes from './App.css'; //imports css
-import Person from './Person/Person.js' //imports person component
+import Person from './Person/Person'; //imports person component
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
   state = {
@@ -58,13 +59,14 @@ class App extends Component {
       persons = (
         <div>
           {this.state.persons.map((person, index) => {
-            return <Person
-              click={() => this.deletePersonHandler(index)}
-              name={person.name}
-              age={person.age}
-              key={person.id}
-              changed={(event) => this.nameChangeHandler(event, person.id)}
-            />
+            return <ErrorBoundary key={person.id}>
+              <Person
+                click={() => this.deletePersonHandler(index)}
+                name={person.name}
+                age={person.age}
+                changed={(event) => this.nameChangeHandler(event, person.id)}
+              />
+            </ErrorBoundary>
           })}
         </div>
       );
@@ -76,21 +78,21 @@ class App extends Component {
     // assign css classes
     const assignedClasses = []
     if (this.state.persons.length <= 2) {
-      assignedClasses.push( classes.red );
+      assignedClasses.push(classes.red);
     }
     if (this.state.persons.length <= 1) {
-      assignedClasses.push( classes.bold ); 
+      assignedClasses.push(classes.bold);
     }
 
     return (
-        <div className={classes.App}>
-          <h1>Hi, I'm a React App</h1>
-          <p className={assignedClasses.join(" ")}>Click the sentences in the cards to see me change! Woohoo!</p>
-          <button
-            className={btnClass}
-            onClick={this.togglePersonHandler}>Toggle Persons</button>
-          {persons}
-        </div>
+      <div className={classes.App}>
+        <h1>Hi, I'm a React App</h1>
+        <p className={assignedClasses.join(" ")}>Click the sentences in the cards to see me change! Woohoo!</p>
+        <button
+          className={btnClass}
+          onClick={this.togglePersonHandler}>Toggle Persons</button>
+        {persons}
+      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App'; // imports our component
+import App from './containers/App'; // imports our component
 import * as serviceWorker from './serviceWorker';
 
 // first param renders the element in app.js

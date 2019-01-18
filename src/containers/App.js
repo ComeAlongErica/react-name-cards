@@ -1,7 +1,7 @@
 import React, { Component } from 'react'; // import component class
 import classes from './App.css'; //imports css
-import Person from './Person/Person'; //imports person component
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
+import Persons from '../components/Persons/Persons'; //imports person component
+import Cockpit from '../components/Cockpit/Cockpit';
 
 class App extends Component {
   state = {
@@ -53,44 +53,20 @@ class App extends Component {
 
     //styling with javascript, bound as an attribute on the button
     let persons = null;
-    let btnClass = '';
 
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          {this.state.persons.map((person, index) => {
-            return <ErrorBoundary key={person.id}>
-              <Person
-                click={() => this.deletePersonHandler(index)}
-                name={person.name}
-                age={person.age}
-                changed={(event) => this.nameChangeHandler(event, person.id)}
-              />
-            </ErrorBoundary>
-          })}
-        </div>
-      );
-
-      btnClass = classes.Selected;
-    }
-
-
-    // assign css classes
-    const assignedClasses = []
-    if (this.state.persons.length <= 2) {
-      assignedClasses.push(classes.red);
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClasses.push(classes.bold);
+      persons = <Persons
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangeHandler} />;
     }
 
     return (
       <div className={classes.App}>
-        <h1>Hi, I'm a React App</h1>
-        <p className={assignedClasses.join(" ")}>Click the sentences in the cards to see me change! Woohoo!</p>
-        <button
-          className={btnClass}
-          onClick={this.togglePersonHandler}>Toggle Persons</button>
+        <Cockpit
+          clicked={this.togglePersonHandler}
+          showPersons={this.state.showPersons}
+          persons={this.state.persons} />
         {persons}
       </div>
     );

@@ -7,7 +7,7 @@ const cockpit = (props) => {
     let btnClass = '';
 
     if (props.showPersons) {
-        btnClass = classes.Red;
+        btnClass = classes.red;
     }
 
     if (props.persons.length <= 2) {

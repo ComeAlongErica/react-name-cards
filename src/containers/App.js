@@ -51,7 +51,6 @@ class App extends Component {
   // needs render method to render to screen
   render() {
 
-    //styling with javascript, bound as an attribute on the button
     let persons = null;
 
     if (this.state.showPersons) {
